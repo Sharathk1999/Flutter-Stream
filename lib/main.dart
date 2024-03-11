@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stream/core/theme/theme.dart';
 import 'package:flutter_stream/features/auth/presentation/pages/signup_page.dart';
 
 void main() {
@@ -11,14 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Stream',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.darkThemeMode,
       home: const SignUpPage(),
     );
-  }
+  } 
 }
 
 
