@@ -5,30 +5,29 @@ import 'package:flutter_stream/core/common/widgets/custom_loader.dart';
 import 'package:flutter_stream/core/theme/app_pallete.dart';
 import 'package:flutter_stream/core/utils/show_snackbar.dart';
 import 'package:flutter_stream/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:flutter_stream/features/auth/presentation/pages/login_page.dart';
+import 'package:flutter_stream/features/auth/presentation/pages/signup_page.dart';
 import 'package:flutter_stream/features/auth/presentation/widgets/auth_gradient_btn.dart';
 
 import '../widgets/auth_text_form_field.dart';
 
-class SignUpPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   static route() => MaterialPageRoute(
-        builder: (context) => const SignUpPage(),
+        builder: (context) => const LoginPage(),
       );
-  const SignUpPage({super.key});
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
-  final nameController = TextEditingController();
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
   void dispose() {
-    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -37,19 +36,16 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: BlocConsumer<AuthBloc, AuthState>(
-          listener: (context, state) {   
+          listener: (context, state) {
             if (state is AuthFailure) {
               showSnackBar(context, state.message, "Oops..!", ContentType.failure);
             }
-            
           },
           builder: (context, state) {
-            if (state is AuthLoading) {
+             if (state is AuthLoading) {
               return const LoaderWidget();
             }
             return Form(
@@ -58,7 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Sign Up",
+                    "Login",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 40,
@@ -66,10 +62,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(
                     height: 20,
-                  ),
-                  AuthTextFormField(
-                    hintText: "Name",
-                    controller: nameController,
                   ),
                   const SizedBox(
                     height: 12,
@@ -90,12 +82,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     height: 25,
                   ),
                   AuthGradientBtn(
-                    btnName: "Sign up",
+                    btnName: "Login",
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         context.read<AuthBloc>().add(
-                              AuthSignUpEvent(
-                                name: nameController.text.trim(),
+                              AuthLoginEvent(
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim(),
                               ),
@@ -108,15 +99,15 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, LoginPage.route());
+                      Navigator.push(context, SignUpPage.route());
                     },
                     child: RichText(
                       text: TextSpan(
-                        text: "Already have an account? ",
+                        text: "Don't have an account? ",
                         style: Theme.of(context).textTheme.titleSmall,
                         children: [
                           TextSpan(
-                            text: "Sign In",
+                            text: "Sign Up",
                             // ? - if titleSmall is null don't call copyWith
                             style: Theme.of(context)
                                 .textTheme
