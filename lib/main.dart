@@ -4,6 +4,7 @@ import 'package:flutter_stream/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:flutter_stream/core/theme/theme.dart';
 import 'package:flutter_stream/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_stream/features/auth/presentation/pages/login_page.dart';
+import 'package:flutter_stream/features/blog/presentation/pages/blog_page.dart';
 import 'package:flutter_stream/init_dependencies.dart';
 
 void main() async {
@@ -50,11 +51,7 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return const Scaffold(
-              body: Center(
-                child: Text("Home Buddy"),
-              ),
-            );
+            return const BlogPage();
           }
           return const LoginPage();
         },
