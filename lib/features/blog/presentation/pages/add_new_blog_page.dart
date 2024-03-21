@@ -97,7 +97,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
         listener: (context, state) {
           if (state is BlogFailureState) {
             showSnackBar(context, state.error, "Something went wrong..!", ContentType.failure);
-          } else if(state is BlogSuccessState){
+          } else if(state is BlogUploadSuccessState){
             Navigator.pushAndRemoveUntil(context, BlogPage.route(), (route) => false);
           }
         },
