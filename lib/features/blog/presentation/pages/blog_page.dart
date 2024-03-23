@@ -7,7 +7,9 @@ import 'package:flutter_stream/core/theme/app_pallete.dart';
 import 'package:flutter_stream/core/utils/show_snackbar.dart';
 import 'package:flutter_stream/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:flutter_stream/features/blog/presentation/pages/add_new_blog_page.dart';
+import 'package:flutter_stream/features/blog/presentation/pages/blog_view_page.dart';
 import 'package:flutter_stream/features/blog/presentation/widgets/blog_card_widget.dart';
+import 'package:sidebarx/sidebarx.dart';
 
 class BlogPage extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -46,6 +48,37 @@ class _BlogPageState extends State<BlogPage> {
           ),
         ],
       ),
+      drawer: SidebarX(
+        controller: SidebarXController(selectedIndex: 0, extended: true),
+        theme: const SidebarXTheme(
+          width: 120,
+          hoverColor: AppPallete.gradient1,
+          selectedIconTheme: IconThemeData(color: AppPallete.gradient1,),
+          iconTheme: IconThemeData(color: AppPallete.borderColor,),
+          textStyle: TextStyle(color: Colors.white38),
+          padding: EdgeInsets.only(top: 15),
+          selectedTextStyle: TextStyle(color: Colors.white),
+          itemTextPadding: EdgeInsets.symmetric(horizontal: 5),
+          selectedItemTextPadding:  EdgeInsets.symmetric(horizontal: 5),
+        ),
+        items:  [
+          SidebarXItem(
+            icon: Icons.exit_to_app_rounded,
+            label: 'Logout',
+            onTap: () {
+              print('Logout Tapped');
+            },
+          ),
+          SidebarXItem(
+            icon: CupertinoIcons.info_circle_fill,
+            label: 'Info',
+            onTap: () {
+              
+              print('Info Tapped');
+            },
+          ),
+        ],
+      ),
       body: BlocConsumer<BlogBloc, BlogState>(
         listener: (context, state) {
           if (state is BlogFailureState) {
@@ -65,9 +98,14 @@ class _BlogPageState extends State<BlogPage> {
               itemBuilder: (context, index) {
                 final blog = blogs[index];
 
-                return BlogCard(
-                  blog: blog,
-                  color: AppPallete.borderColor,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, BlogViewPage.route(blog));
+                  },
+                  child: BlogCard(
+                    blog: blog,
+                    color: AppPallete.borderColor,
+                  ),
                 );
               },
             );

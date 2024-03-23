@@ -8,6 +8,7 @@ import 'package:flutter_stream/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_stream/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter_stream/features/auth/presentation/widgets/auth_gradient_btn.dart';
 
+import '../../../blog/presentation/pages/blog_page.dart';
 import '../widgets/auth_text_form_field.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -45,6 +46,8 @@ class _SignUpPageState extends State<SignUpPage> {
           listener: (context, state) {   
             if (state is AuthFailure) {
               showSnackBar(context, state.message, "Oops..!", ContentType.failure);
+            }else if (state is AuthSuccess){
+              Navigator.pushAndRemoveUntil(context, BlogPage.route(), (route) => false);
             }
             
           },
