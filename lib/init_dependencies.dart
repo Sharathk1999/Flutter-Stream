@@ -6,6 +6,7 @@ import 'package:flutter_stream/features/auth/data/repository/auth_repository_imp
 import 'package:flutter_stream/features/auth/domain/repository/auth_repository.dart';
 import 'package:flutter_stream/features/auth/domain/usecases/current_user.dart';
 import 'package:flutter_stream/features/auth/domain/usecases/user_login.dart';
+import 'package:flutter_stream/features/auth/domain/usecases/user_logout.dart';
 import 'package:flutter_stream/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:flutter_stream/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_stream/features/blog/data/datasources/blog_local_data_source.dart';
@@ -79,7 +80,9 @@ void _initAuth() {
       () => CurrentUser(
         serviceLocator(),
       ),
+       
     )
+    ..registerFactory(() => UserLogout(serviceLocator(),),)
     //Bloc
     ..registerLazySingleton(
       () => AuthBloc(
@@ -87,6 +90,7 @@ void _initAuth() {
         userLogin: serviceLocator(),
         currentUser: serviceLocator(),
         appUserCubit: serviceLocator(),
+        userLogout: serviceLocator(),
       ),
     );
 }

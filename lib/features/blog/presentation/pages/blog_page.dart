@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stream/core/common/widgets/custom_loader.dart';
 import 'package:flutter_stream/core/theme/app_pallete.dart';
 import 'package:flutter_stream/core/utils/show_snackbar.dart';
+import 'package:flutter_stream/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_stream/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter_stream/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:flutter_stream/features/blog/presentation/pages/add_new_blog_page.dart';
 import 'package:flutter_stream/features/blog/presentation/pages/blog_view_page.dart';
@@ -66,7 +68,8 @@ class _BlogPageState extends State<BlogPage> {
             icon: Icons.exit_to_app_rounded,
             label: 'Logout',
             onTap: () {
-              print('Logout Tapped');
+              context.read<AuthBloc>().add(AuthLogoutEvent());
+              Navigator.pushAndRemoveUntil(context, LoginPage.route(), (route) => false);
             },
           ),
           SidebarXItem(
@@ -74,7 +77,7 @@ class _BlogPageState extends State<BlogPage> {
             label: 'Info',
             onTap: () {
               
-              print('Info Tapped');
+              // todo: Add an info page here 
             },
           ),
         ],

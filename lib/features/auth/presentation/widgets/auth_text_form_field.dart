@@ -22,7 +22,7 @@ class AuthTextFormField extends StatelessWidget {
       obscureText: isObscure,
       validator: (value) {
         if (value!.isEmpty) {
-          return "$hintText is filled!" ;
+          return "$hintText field is not filled!" ;
         }
         return null;
       },
