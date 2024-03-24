@@ -83,20 +83,20 @@ Contributions are welcome! Feel free to open issues or pull requests to improve 
 Here are some screenshots of the application:
 
 - App Work Flow
-![App Work Flow](images\Untitled-2024-03-09-1856.png)
+![App Work Flow](https://github.com/Sharathk1999/Flutter-Stream/blob/main/images/Untitled-2024-03-09-1856.png)
 
 - Login Page
-![Login Page](images\login.png)
+![Login Page](https://github.com/Sharathk1999/Flutter-Stream/blob/main/images/login.png)
 
 - Sign Up Page
-![Sign Up Page](images\signup.png)
+![Sign Up Page](https://github.com/Sharathk1999/Flutter-Stream/blob/main/images/signup.png)
 
 - Blog Page
-![Blog Page](images\blog_page.png)
+![Blog Page](https://github.com/Sharathk1999/Flutter-Stream/blob/main/images/blog_page.png)
 
 - Blog View Page
-![Blog View Page](images\blog_view_page.png)
+![Blog View Page](https://github.com/Sharathk1999/Flutter-Stream/blob/main/images/blog_view_page.png)
 
 - Supabase Table
-![Supabase Table](images\supabase.png)
+![Supabase Table](https://github.com/Sharathk1999/Flutter-Stream/blob/main/images/supabase.png)
 
